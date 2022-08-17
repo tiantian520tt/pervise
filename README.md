@@ -26,3 +26,7 @@ Currently implemented functions:
   - 。。。
   
  # Welcome to the project.
+ 
+ （PS: 我是中国人。我最近考虑把https://virusshare.com/hashfiles/上的hash文件下载下来，然后加入病毒库，或者做成云查杀。但是这下载速度真的很感人，如果有看到的麻烦帮个忙下载下。。。无语。。。）
+ 
+ 
