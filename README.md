@@ -36,6 +36,9 @@ Currently implemented functions:<br/>
  # How to use it
  
 ## Server
+PS: Before everything, please make sure that the 5000 port and 5098 port of your server are unblocked.<br/>
+注: 在一切之前，请确保您服务器的5000端口和5098端口畅通无阻。<br/>
+
  First, install a python environment to debug it. Currently, the client of this project only supports Python 2.7. However, the server supports both Python 2.7 and python 3.6 and above. Follow the instructions to install. Please note that the version may be changed at any time in the future.<br/>
  首先，安装一个python环境来调试它。目前，这个项目的客户端仅支持Python2.7。但服务端同时支持Python2.7以及Python3.6以上版本。请按照指示安装。请注意，今后随时可能更改版本。<br/>
 Next, you need to configure the server, otherwise it will not work properly. You can configure the server locally or on your cloud server. You can do this by using the GIT clone command on your host.<br/>
