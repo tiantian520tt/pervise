@@ -54,6 +54,16 @@ fileHandler  =  open  ("H:\\database\\"+hash[0]+".hash",  "r") # Change path (Ge
 
 将“H:\\database\\”修改为您保存文件的路径。然后重启服务器。(python脚本)<br/>
 
+Next, you need to set up a web server to download local database updates. There are many ways to do this, and you can choose. (for example, use the HTTP server that comes with Python)<br/>
+However, it should be noted that the server must have port 5098 open.(Web server runs on it)<br/>
+接下来，您需要设置一个web服务器来下载本地数据库更新。有很多方法可以做到这一点，你可以选择。（例如，使用Python附带的HTTP服务器）<br/>
+但是，应该注意，服务器必须打开端口5098。（Web服务器在其上运行）<br/>
+
+When everything is ready, you can use the attached server_test.py test your server. Please check after operation for details.<br/>
+一切就绪后，您可以使用附带的server_test.py测试您的服务器。详情请运行后查看。<br/>
+![image](https://user-images.githubusercontent.com/64673335/185343583-dbf232a0-4165-49aa-b8df-8ba906df1caa.png)
+<br/>
+
 So far, the server has completed the configuration.
 ## Client
 Your client also needs to install python. Please refer to server for instructions.<br/>
