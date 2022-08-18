@@ -106,12 +106,17 @@ def search_hash_from_file(file_list) :
     return file_list
 
 def add_file_in_file_list(file_list,file_path) :
-    file_index={}
-    file_index['file_path']=file_path
-    file_index['file_md5']=get_file_md5(file_path)
-    file_index['file_sha1']=get_file_sha1(file_path)
-    file_index['file_sha256']=get_file_sha256(file_path)
-    file_list.append(file_index)
+    try:
+        if file_path.endswith('.exe') or file_path.endswith('.dll') or file_path.endswith('.com'):
+            color.printGreen('[*] Get File: '+file_path)
+            file_index={}
+            file_index['file_path']=file_path
+            file_index['file_md5']=get_file_md5(file_path)
+            file_index['file_sha1']=get_file_sha1(file_path)
+            file_index['file_sha256']=get_file_sha256(file_path)
+            file_list.append(file_index)
+    except:
+        color.printRed('[!] File ' + file_path + ': No permission')
 
 if __name__=='__main__' :
     logo1="""
@@ -217,13 +222,16 @@ PPPPPPPPPP            eeeeeeeeeeeeee   rrrrrrr                    vvv           
                 virus_cnt += 1
         color.printYellow('[!] Found ' + str(virus_cnt) + ' Viruses.')
         if virus_cnt:
-            MsgBox("Warning","The virus has been found, please deal with it immediately.")
+            try:
+                MsgBox("Warning","The virus has been found, please deal with it immediately.")
+            except:
+                pass
             color.printYellow('The location of the virus has been determined. Do you want to force the virus to move to quarantine and terminate the virus program? (of course, the virus may not be running.) if yes, please enter y. Otherwise, please terminate the program.')
             try:
                 raw_input()
             except:
                 print('[-] Stopped.')
-                exit()
+                quit()
             time.sleep(1)
             virus_cnt = 0
             virus_cnt2 = 0
@@ -254,14 +262,15 @@ PPPPPPPPPP            eeeeeeeeeeeeee   rrrrrrr                    vvv           
         
         exit()
     else :
-        print 'Using:'
-        print '    quick_scan_virus.py %file_path%|%directory_path%|all (cloud)'
-        print 'Example:'
-        print '    quick_scan_virus.py C:\\Windows\\system32\\kernel32.dll'
-        print '        scan this file(quick)'
-        print '    quick_scan_virus.py C:\\Windows\\system32\\'
-        print '        scan all files of this directory(quick) '
-        print '    quick_scan_virus.py all'
-        print '        scan all files in your computer for device C(quick)'
-        print '    quick_scan_virus.py C:\\Windows\\system32\\kernel32.dll cloud'
-        print '        scan the file(cloud and slowly)'
+        color.printGreen('Using:')
+        color.printGreen('    pervise.exe|pervise.py %file_path%|%directory_path%|all (cloud)')
+        color.printGreen('Example:')
+        color.printGreen('    pervise.exe|pervise.py C:\\Windows\\system32\\kernel32.dll')
+        color.printGreen('        scan this file(quick)')
+        color.printGreen('    pervise.exe|pervise.py C:\\Windows\\system32\\')
+        color.printGreen('        scan all files of this directory(quick) ')
+        color.printGreen('    pervise.exe|pervise.py all')
+        color.printGreen('        scan all files in your computer for device C(quick)')
+        color.printGreen('    pervise.exe|pervise.py C:\\Windows\\system32\\kernel32.dll cloud')
+        color.printGreen('        scan the file(cloud and slowly)')
+        
