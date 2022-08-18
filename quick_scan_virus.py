@@ -1,5 +1,5 @@
 #coding:utf-8
-
+import random
 import hashlib
 import sys
 import os
@@ -85,8 +85,23 @@ def search_hash_from_file(file_list) :
                 file_list[i]['is_virus']=True
                 file_list[i]['virus_infomarion']=virus_recode
                 continue
-                
     file_object.close()
+    if len(sys.argv) == 3:
+        if sys.argv[2] == 'cloud':
+            color.printGreen("[*] The quick scan ends. Cloud scanning is being used for further confirmation.")
+            for i in range(len(file_list)) :
+                
+                file_list_index = file_list[i]
+                virus = web_server.cloud_sumbit(file_list_index.get('file_md5'))
+                #print('Now: '+str(hash_recode==file_list_index.get('file_md5')))
+                #time.sleep(1)
+                if virus:
+                    file_list[i]['is_virus']=True
+                    #print(file_list[i]['is_virus'])
+                    file_list[i]['virus_infomarion']="Cloud:Virus"
+                    continue
+            color.printGreen("[*] The cloud scan has ended. Analyzing report.")
+                
     #print(file_list)
     return file_list
 
@@ -99,6 +114,67 @@ def add_file_in_file_list(file_list,file_path) :
     file_list.append(file_index)
 
 if __name__=='__main__' :
+    logo1="""
+  ____   U _____ u   ____   __     __           ____   U _____ u 
+U|  _"\ u\| ___"|/U |  _"\ u\ \   /"/u  ___    / __"| u\| ___"|/ 
+\| |_) |/ |  _|"   \| |_) |/ \ \ / //  |_"_|  <\___ \/  |  _|"   
+ |  __/   | |___    |  _ <   /\ V /_,-. | |    u___) |  | |___   
+ |_|      |_____|   |_| \_\ U  \_/-(_/U/| |\u  |____/>> |_____|  
+ ||>>_    <<   >>   //   \\_  //   .-,_|___|_,-.)(  (__)<<   >>  
+(__)__)  (__) (__) (__)  (__)(__)   \_)-' '-(_/(__)    (__) (__) 
+    """
+    logo2="""
+ _______                                 __                     
+|       \                               |  \                    
+| $$$$$$$\  ______    ______  __     __  \$$  _______   ______  
+| $$__/ $$ /      \  /      \|  \   /  \|  \ /       \ /      \ 
+| $$    $$|  $$$$$$\|  $$$$$$\\\$$\ /  $$| $$|  $$$$$$$|  $$$$$$\\
+| $$$$$$$ | $$    $$| $$   \$$ \$$\  $$ | $$ \$$    \ | $$    $$
+| $$      | $$$$$$$$| $$        \$$ $$  | $$ _\$$$$$$\| $$$$$$$$
+| $$       \$$     \| $$         \$$$   | $$|       $$ \$$     \\
+ \$$        \$$$$$$$ \$$          \$     \$$ \$$$$$$$   \$$$$$$$
+                                                                                                                         
+    """
+    logo3="""
+     _ __       ,----.                     ,-.-. .=-.-.  ,-,--.     ,----.  
+  .-`.' ,`.  ,-.--` , \  .-.,.---.  ,--.-./=/ ,//==/_ /,-.'-  _\ ,-.--` , \ 
+ /==/, -   \|==|-  _.-` /==/  `   \/==/, ||=| -|==|, |/==/_ ,_.'|==|-  _.-` 
+|==| _ .=. ||==|   `.-.|==|-, .=., \==\,  \ / ,|==|  |\==\  \   |==|   `.-. 
+|==| , '=',/==/_ ,    /|==|   '='  /\==\ - ' - /==|- | \==\ -\ /==/_ ,    / 
+|==|-  '..'|==|    .-' |==|- ,   .'  \==\ ,   ||==| ,| _\==\ ,\|==|    .-'  
+|==|,  |   |==|_  ,`-._|==|_  . ,'.  |==| -  ,/|==|- |/==/\/ _ |==|_  ,`-._ 
+/==/ - |   /==/ ,     //==/  /\ ,  ) \==\  _ / /==/. /\==\ - , /==/ ,     / 
+`--`---'   `--`-----`` `--`-`--`--'   `--`--'  `--`-`  `--`---'`--`-----``  
+    """
+    logo4="""
+                                                                                                                                 
+                                                                                                                             
+PPPPPPPPPPPPPPPPP                                                                 iiii                                       
+P::::::::::::::::P                                                               i::::i                                      
+P::::::PPPPPP:::::P                                                               iiii                                       
+PP:::::P     P:::::P                                                                                                         
+  P::::P     P:::::P  eeeeeeeeeeee    rrrrr   rrrrrrrrrvvvvvvv           vvvvvvviiiiiii     ssssssssss       eeeeeeeeeeee    
+  P::::P     P:::::Pee::::::::::::ee  r::::rrr:::::::::rv:::::v         v:::::v i:::::i   ss::::::::::s    ee::::::::::::ee  
+  P::::PPPPPP:::::Pe::::::eeeee:::::eer:::::::::::::::::rv:::::v       v:::::v   i::::i ss:::::::::::::s  e::::::eeeee:::::ee
+  P:::::::::::::PPe::::::e     e:::::err::::::rrrrr::::::rv:::::v     v:::::v    i::::i s::::::ssss:::::se::::::e     e:::::e
+  P::::PPPPPPPPP  e:::::::eeeee::::::e r:::::r     r:::::r v:::::v   v:::::v     i::::i  s:::::s  ssssss e:::::::eeeee::::::e
+  P::::P          e:::::::::::::::::e  r:::::r     rrrrrrr  v:::::v v:::::v      i::::i    s::::::s      e:::::::::::::::::e 
+  P::::P          e::::::eeeeeeeeeee   r:::::r               v:::::v:::::v       i::::i       s::::::s   e::::::eeeeeeeeeee  
+  P::::P          e:::::::e            r:::::r                v:::::::::v        i::::i ssssss   s:::::s e:::::::e           
+PP::::::PP        e::::::::e           r:::::r                 v:::::::v        i::::::is:::::ssss::::::se::::::::e          
+P::::::::P         e::::::::eeeeeeee   r:::::r                  v:::::v         i::::::is::::::::::::::s  e::::::::eeeeeeee  
+P::::::::P          ee:::::::::::::e   r:::::r                   v:::v          i::::::i s:::::::::::ss    ee:::::::::::::e  
+PPPPPPPPPP            eeeeeeeeeeeeee   rrrrrrr                    vvv           iiiiiiii  sssssssssss        eeeeeeeeeeeeee  
+                                                                                                                             
+                                                                                                                             
+                                                                                                                             
+                                                                                                                             
+                                                                                                                             
+                                                                                                                             
+                                                                                                                             
+    """
+    logos = [logo1,logo2,logo3,logo4]
+    color.printGreen(logos[random.randint(0,3)])
     update = web_server.check_version()
     if update == False:
         color.printYellow("[!] New virus library update found! Updating virus library.")
@@ -106,7 +182,8 @@ if __name__=='__main__' :
         color.printGreen("[!] Updated.")
     # http://127.0.0.1:5000/database/version?version=
     
-    if len(sys.argv) is 2 :
+
+    if len(sys.argv) >= 2:
         file_list=[]
         if os.path.isfile(sys.argv[1]) :
             add_file_in_file_list(file_list,sys.argv[1])
@@ -178,11 +255,13 @@ if __name__=='__main__' :
         exit()
     else :
         print 'Using:'
-        print '    quick_scan_virus.py %file_path%|%directory_path%|all'
+        print '    quick_scan_virus.py %file_path%|%directory_path%|all (cloud)'
         print 'Example:'
         print '    quick_scan_virus.py C:\\Windows\\system32\\kernel32.dll'
-        print '        scan this file'
+        print '        scan this file(quick)'
         print '    quick_scan_virus.py C:\\Windows\\system32\\'
-        print '        scan all files of this directory '
+        print '        scan all files of this directory(quick) '
         print '    quick_scan_virus.py all'
-        print '        scan all files in your computer'
+        print '        scan all files in your computer for device C(quick)'
+        print '    quick_scan_virus.py C:\\Windows\\system32\\kernel32.dll cloud'
+        print '        scan the file(cloud and slowly)'
