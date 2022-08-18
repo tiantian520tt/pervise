@@ -21,6 +21,8 @@ Currently implemented functions:<br/>
   - 处理病毒文件
   - Update the virus library from the server (your server running script is required)
   - 从服务器更新病毒库（需要您的服务器在运行我们的脚本）
+  - Connect to the cloud server for virus detection and killing
+  - 连接云服务器进行病毒查杀
   
  Future plans:<br/>
  未来计划：<br/>
