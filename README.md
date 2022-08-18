@@ -1,4 +1,8 @@
 # Pervise
+(Powered by Python2.7)
+(动力源自Python2.7)
+(Server Powered by Python2.7/3.8)
+(服务器动力源自Python2.7或Python3.8)
 A simple and complete security software kernel based on MD5 matching
 一个简易而完整的安全软件内核程序。
 
