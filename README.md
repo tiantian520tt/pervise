@@ -38,8 +38,8 @@ Currently implemented functions:<br/>
  首先，安装一个python环境来调试它。目前，这个项目的客户端仅支持Python2.7。但服务端同时支持Python2.7以及Python3.6以上版本。请按照指示安装。请注意，今后随时可能更改版本。<br/>
 Next, you need to configure the server, otherwise it will not work properly. You can configure the server locally or on your cloud server. You can do this by using the GIT clone command on your host.<br/>
 接下来，您需要配置服务器，否则它将无法正常工作。您可以在本地或云服务器上配置服务器。您可以在主机上使用GIT clone命令来实现这一点。<br/>
-Use command: python web_service.py , start the server. However, this is not correct. If you need to configure the server to the cloud server, you need to change the file. Open this file and modify the IP variable of the header.<br/>
-使用命令：python web_service.py ，启动服务器。然而，这可能是不正确的。如果需要将服务器配置为云服务器，则需要更改文件。打开此文件并修改标头的IP变量。<br/>
+Use command: python web_service.py , start the server.<br/>
+使用命令：python web_service.py ，启动服务器。<br/>
 At this point, you should see some log files in the output. Good, your configuration is half finished<br/>
 此时，您可以看到日志。恭喜，你的任务已经完成了一半了！<br/>
 
