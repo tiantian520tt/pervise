@@ -1,5 +1,6 @@
 import requests
-ip = "127.0.0.1" # Change it
+import brotli
+ip = "101.34.173.17" # Change it
 def check_version():
     f = open("./DataBase/database.ini",'r+')
     version = f.read()
@@ -16,12 +17,14 @@ def check_version():
 def update_version():
     url = 'http://'+ ip +':5098/database.pvsd'
     res = requests.get(url)
-    with open('./DataBase/database.pvsd', 'w+') as f:
-        f.write(res.content)
+    data = str(res.content,"utf-8")
+    with open('./DataBase/database.pvsd', 'w+', encoding='utf-8') as f:
+        f.write(data)
     url = 'http://'+ ip +':5000/database/get_version'
-    response = requests.get(url)
-    with open('./DataBase/database.ini', 'w+') as f:
-        f.write(response.content)
+    res = requests.get(url)
+    data = str(res.content,"utf-8")
+    with open('./DataBase/database.ini', 'w+', encoding='utf-8') as f:
+        f.write(data)
 def cloud_sumbit(md5):
     url = "http://" + ip + ":5000/cloud/sumbit?hash=" + md5
     response = requests.get(url)
