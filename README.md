@@ -2,6 +2,8 @@
 ![logo](https://user-images.githubusercontent.com/64673335/185289899-4d6c6b67-7daa-44c8-a556-ff867629aa38.png)<br/>
 (Powered by Python3.7)<br/>
 (服务器动力源自Python3.7)<br/>
+(this branch uses hexadecimal malware signature matching to identify viruses, and the virus database is from ClamAV official)<br/>
+(此分支使用16进制恶意软件特征码匹配来鉴别病毒，病毒数据库源自clamav官方)<br/>
 
 A simple and complete security software kernel based on MD5 matching<br/>
 一个简易而完整的安全软件内核程序。
